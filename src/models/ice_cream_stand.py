@@ -1,6 +1,5 @@
 from src.models.restaurant import Restaurant
 
-
 class IceCreamStand(Restaurant):
     """Um tipo especializado de restaurante."""
 
@@ -18,26 +17,34 @@ class IceCreamStand(Restaurant):
             print("\nNo momento temos os seguintes sabores de sorvete disponíveis:")
             for flavor in self.flavors:
                 print(f"\t-{flavor}")
+            msg = f"No momento temos os seguintes sabores de sorvete disponíveis: {self.flavors}"
         else:
-            print("Estamos sem estoque atualmente!")
+            msg = "Estamos sem estoque atualmente!"
+        return msg
+    # Refatorado metodo acima onde criamos uma variavel msg e return com proposito de atender o teste unitario
 
     def find_flavor(self, flavor):
         """Verifica se o sabor informado está disponível."""
         if self.flavors:
             if flavor in self.flavors:
-                print(f"Temos no momento {self.flavors}!")
+                msg = f"Temos no momento {flavor}!"
             else:
-                print(f"Não temos no momento {self.flavors}!")
+                msg = f"Não temos no momento {flavor}!"
         else:
-            print("Estamos sem estoque atualmente!")
+            msg = "Estamos sem estoque atualmente!"
+        return msg
+    # Bug 1 Feito ajuste na mensagem anterior onde o mesmo estava {self.flavors} e colocamos {flavor}
+    # Refatorado metodo acima onde criamos uma variavel msg e return com proposito de atender o teste unitario
 
     def add_flavor(self, flavor):
         """Add o sabor informado ao estoque."""
         if self.flavors:
             if flavor in self.flavors:
-                print("\nSabor já disponivel!")
+                msg = "Sabor já disponivel!"
             else:
                 self.flavors.append(flavor)
-                print(f"{flavor} adicionado ao estoque!")
+                msg = f"{flavor} adicionado ao estoque!"
         else:
-            print("Estamos sem estoque atualmente!")
+            msg = "Estamos sem estoque atualmente!"
+        return msg
+    # Refatorado metodo acima onde criamos uma variavel msg e return com proposito de atender o teste unitario
